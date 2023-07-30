@@ -1,0 +1,16 @@
+<h1>Welcome page</h1>
+<p> 
+    This page is to hit the application the api way
+<li> Get type of user input (Admin, registered user, guest) </li>
+<li> Get auth token </li>
+<li> On submit (Hit GET /articles page with information provided) </li>
+<li> App internally checks the user authorisation details </li>
+</p>
+
+<%= form_with url: "/index", method: :post do |form| %>
+    <%= form.select :city, ["Admin", "User", "Guest"] %>
+    <%= form.text_field :api_token %>
+    <%= form.submit "Submit" %>
+<% end %>
+
+
