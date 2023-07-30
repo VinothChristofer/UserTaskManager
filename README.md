@@ -45,7 +45,7 @@ This application is accessible as both a web app and via api
 ```
 curl -X POST http://localhost:3000/api/users/sign_in -i -H "Accept: application/json" \
    -H 'Content-Type: application/json' \
-   -d '{"user" : {"email":"user3@gmail.com","password":"123456"}}'
+   -d '{"user" : {"email":"test@gmail.com","password":"123456"}}'
 ```
 _Note:_
 - _The api token is set to expire after 1hr. The same is configured for useres logged in via web_
@@ -73,6 +73,11 @@ curl http://localhost:3000/tasks -H "Accept: application/json" \
   -H "Authorization: Bearer <TOKEN>"
 ```
 
+curl http://localhost:3000/tasks -H "Accept: application/json" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjkwNzE0OTg4LCJleHAiOjE2OTA3MTg1ODgsImp0aSI6IjNmZTRmZDM1LTc1MmItNDRkMi05NTczLWFmMmRlYTJlY2EyZCJ9.MxUsD9T3kHhJORp-APUClaVGwN_1dcE9hQ4A2vLytvs"
+
+
 #### GET TASKS BY ID
 ```
 curl http://localhost:3000/tasks/32 -H "Accept: application/json" \
@@ -80,5 +85,11 @@ curl http://localhost:3000/tasks/32 -H "Accept: application/json" \
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-### My notes
-- 
+### To do
+- integrate login access to /tasks controller
+- update of tasks
+- delete of tasks
+- convert date to epoc seconds and save and view versa to show
+- implement cron job for this api prev day itself
+https://openweathermap.org/forecast16#limit
+- if task is nil return empty json or proper articles response
