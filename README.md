@@ -91,11 +91,10 @@ curl http://localhost:3000/tasks/<id> -H "Accept: application/json" \
 ```
 
 ### To do
-- fix login access to /tasks controller for web signin
 - add signout in web ui
 - update of tasks
 - delete of tasks
 - convert date to epoc seconds and save and view versa to show
-- implement cron job for this api prev day itself
-https://openweathermap.org/forecast16#limit
+- Check cron job once api is active
 - Error handling when userLocationinfo doesn't get added post user save properly
+- write tests
