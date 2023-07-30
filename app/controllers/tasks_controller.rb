@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, unless: :allowed_access
+  before_action :authenticate_user!
   def index
     # user_id need not be checked as only authenticated user is allowed to see tasks
-    @tasks = Task.where(user_id: current_user.id).all
+    @tasks = Task.where(user_id: current_user_id).all
     respond_to do |format|
       format.html {render 'index'}
       # if task is nil return empty json or proper articles response
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find_by(id: params[:id], user_id: current_user.id)
+    @task = Task.find_by(id: params[:id], user_id: current_user_id)
     respond_to do |format|
       format.html {render 'show'}
       format.json {render json: @task.to_json}
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   def create
     # add authenticated user id here
     new_task_params=task_params
-    new_task_params["user_id"] = current_user.id
+    new_task_params["user_id"] = current_user_id
     @task = Task.new(new_task_params)
 
     if @task.save
@@ -47,9 +47,22 @@ class TasksController < ApplicationController
       # params.require(:task).extract!(:title, :description)
     end
 
-    def allowed_access
-      current_user
+    def authenticate_user!
+      super unless session['current_user_id'].present?
     end
+    
+    def current_user_id
+      session['current_user_id']
+    end
+    
+    def current_user
+      @current_user ||= User.find(current_user_id)
+    end
+    
+    # def allowed_access
+    #   debugger
+    #   current_user
+    # end
 end
 
 # <%= #current_user.email%>

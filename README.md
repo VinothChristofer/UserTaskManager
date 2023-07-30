@@ -85,13 +85,10 @@ curl http://localhost:3000/tasks -H "Accept: application/json" \
 
 #### GET TASKS BY ID
 ```
-curl http://localhost:3000/tasks/3 -H "Accept: application/json" \
+curl http://localhost:3000/tasks/<id> -H "Accept: application/json" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer <TOKEN>"
 ```
-curl http://localhost:3000/tasks/3 -H "Accept: application/json" \
-  -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer <TOKEN>"
 
 ### To do
 - fix login access to /tasks controller for web signin

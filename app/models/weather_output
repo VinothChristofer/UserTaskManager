@@ -1,0 +1,48 @@
+class weatherOutput
+
+  attr_accessor :cnt
+
+  has_many :list
+    class ListSerializer
+        include ActiveModel::Serializers::JSON
+        attributes :deg, :rain, :humidity, :speed
+
+        has_many :weather
+
+        def attributes=(hash)
+            hash.each do |key, value|
+              send("#{key}=", value)
+            end
+          end
+        
+          def attributes
+            instance_values
+          end
+
+        class WeatherSerializer
+            include ActiveModel::Serializers::JSON
+            attributes :description
+
+            def attributes=(hash)
+                hash.each do |key, value|
+                  send("#{key}=", value)
+                end
+            end
+        
+            def attributes
+            instance_values
+            end
+        end
+        # Using serializer from app/serializers/gamers_serializer.rb
+    end
+
+  def attributes=(hash)
+    hash.each do |key, value|
+      send("#{key}=", value)
+    end
+  end
+
+  def attributes
+    instance_values
+  end
+end

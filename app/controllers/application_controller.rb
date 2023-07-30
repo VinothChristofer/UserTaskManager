@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :address, :email, :password])
         devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
     end
+
+    def after_sign_in_path_for(resource)
+        session[:current_user_id] = current_user.id
+        tasks_path
+    end
 end

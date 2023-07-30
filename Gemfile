@@ -26,6 +26,9 @@ gem 'devise' # currently 4.9.2 version got installed
 gem 'devise-jwt'
 gem 'rack-cors'
 
+# Cron job to get and populate weather information
+gem 'whenever'
+
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 # gem "turbo-rails"

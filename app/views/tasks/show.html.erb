@@ -1,6 +1,6 @@
 <h1><%= @task.title %></h1>
-<p><%= @task.description %></p>
-<p><%= @task.due_date %></p>
+<p>task description : <%= @task.description %></p>
+<p>due date : <%= @task.due_date %></p>
 <ul>
   <li><%= link_to "Edit", edit_task_path(@task) %></li>
 </ul>
