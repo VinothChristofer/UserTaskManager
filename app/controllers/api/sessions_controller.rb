@@ -28,9 +28,5 @@ class Api::SessionsController < Devise::SessionsController
   def log_out_failure
     render json: { errors: [{ message: "log out failed."}]}, status: :unauthorized
   end
-
-  def sign_in_params
-    devise_parameter_sanitizer.sanitize(:sign_up)
-  end
 end
 

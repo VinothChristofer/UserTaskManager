@@ -47,12 +47,16 @@ curl -X POST http://localhost:3000/api/users/sign_in -i -H "Accept: application/
    -H 'Content-Type: application/json' \
    -d '{"user" : {"email":"user3@gmail.com","password":"123456"}}'
 ```
+_Note:_
+- _The api token is set to expire after 1hr. The same is configured for useres logged in via web_
+- _Use the token from authorisation header to perform other actions_
 
 #### SIGN OUT
 ```
 curl -X DELETE http://localhost:3000/api/users/sign_out -H 'Content-Type: application/json' \
   -H "Authorization: Bearer <TOKEN>"
 ```
+_Note: Once signed out the api token becomes invalid for login_
 
 #### SIGN UP
 ```
@@ -60,6 +64,7 @@ curl -X POST http://localhost:3000/api/users/sign_up -i -H "Accept: application/
    -H 'Content-Type: application/json' \
    -d '{"user" : {"email":"user3@gmail.com","password":"123456"}}'
 ```
+_Note: Post sign up, login again via api to get the token from authorisation header_
 
 #### GET TASKS
 ```
