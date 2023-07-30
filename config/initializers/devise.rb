@@ -280,5 +280,21 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
     jwt.expiration_time = 1.hours.to_i
     jwt.request_formats = { user: [:json] }
-  end  
+  end
+
+  # config/initializers/devise.rb
+  # config.jwt do |jwt|
+  #   jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+  #   jwt.dispatch_requests = [ 
+  #         ['POST', %r{^/api/login$}],
+  #         ['POST', %r{^/api/login.json$}]
+  #   ]
+  #   jwt.revocation_requests = [
+  #         ['DELETE', %r{^/api/logout$}],
+  #         ['DELETE', %r{^/api/logout.json$}]
+  #   ]
+  #   jwt.expiration_time = 2.hours.to_i
+  #   jwt.request_formats = { api_user: [:json] }
+  # end
+  
 end

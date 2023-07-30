@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_092639) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_154456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,10 +26,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_092639) do
     t.bigint "user_id"
     t.string "title"
     t.text "description"
-    t.bigint "due_epoc"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+  create_table "user_location_info", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "latitude"
+    t.integer "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_location_info_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,10 +49,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_092639) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "jti", null: false
+    t.integer "role"
+    t.string "address", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_location_info", "users"
 end

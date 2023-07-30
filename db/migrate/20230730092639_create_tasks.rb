@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.belongs_to :user
       t.string :title
       t.text :description
-      t.bigint :due_epoc
+      t.string :due_date
 
       t.timestamps
     end

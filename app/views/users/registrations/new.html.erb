@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: "enter only city, country %>
+  <div class="field">
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

@@ -41,11 +41,21 @@ This application is accessible as both a web app and via api
 
 ### API requests
 
+#### SIGN UP
+```
+curl -X POST http://localhost:3000/api/users/sign_up -i -H "Accept: application/json" \
+   -H 'Content-Type: application/json' \
+   -d '{"user" : {"email":"user3@gmail.com","password":"123456", "address": "Ireland, Dublin"}}'
+```
+_Note:_
+- _Post sign up, login again via api to get the token from authorisation header_
+- _Send only "<city>, <country>" in address for the coordinated to be assigned without erroring out_
+
 #### SIGN IN
 ```
 curl -X POST http://localhost:3000/api/users/sign_in -i -H "Accept: application/json" \
    -H 'Content-Type: application/json' \
-   -d '{"user" : {"email":"test@gmail.com","password":"123456"}}'
+   -d '{"user" : {"email":"user3@gmail.com","password":"123456"}}'
 ```
 _Note:_
 - _The api token is set to expire after 1hr. The same is configured for useres logged in via web_
@@ -58,38 +68,37 @@ curl -X DELETE http://localhost:3000/api/users/sign_out -H 'Content-Type: applic
 ```
 _Note: Once signed out the api token becomes invalid for login_
 
-#### SIGN UP
-```
-curl -X POST http://localhost:3000/api/users/sign_up -i -H "Accept: application/json" \
-   -H 'Content-Type: application/json' \
-   -d '{"user" : {"email":"user3@gmail.com","password":"123456"}}'
-```
-_Note: Post sign up, login again via api to get the token from authorisation header_
 
-#### GET TASKS
+#### CREATE TASK
+
+curl -X POST http://localhost:3000/tasks -i -H "Accept: application/json" \
+   -H 'Content-Type: application/json' \
+   -d '{"task" : {"title":"task1","description":"task1 body"}}' \
+   -H "Authorization: Bearer <TOKEN>"
+
+#### GET ALL TASKS
 ```
 curl http://localhost:3000/tasks -H "Accept: application/json" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer <TOKEN>"
 ```
-
-curl http://localhost:3000/tasks -H "Accept: application/json" \
-  -H 'Content-Type: application/json' \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjkwNzE0OTg4LCJleHAiOjE2OTA3MTg1ODgsImp0aSI6IjNmZTRmZDM1LTc1MmItNDRkMi05NTczLWFmMmRlYTJlY2EyZCJ9.MxUsD9T3kHhJORp-APUClaVGwN_1dcE9hQ4A2vLytvs"
-
 
 #### GET TASKS BY ID
 ```
-curl http://localhost:3000/tasks/32 -H "Accept: application/json" \
+curl http://localhost:3000/tasks/3 -H "Accept: application/json" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer <TOKEN>"
 ```
+curl http://localhost:3000/tasks/3 -H "Accept: application/json" \
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer <TOKEN>"
 
 ### To do
-- integrate login access to /tasks controller
+- fix login access to /tasks controller for web signin
+- add signout in web ui
 - update of tasks
 - delete of tasks
 - convert date to epoc seconds and save and view versa to show
 - implement cron job for this api prev day itself
 https://openweathermap.org/forecast16#limit
-- if task is nil return empty json or proper articles response
+- Error handling when userLocationinfo doesn't get added post user save properly

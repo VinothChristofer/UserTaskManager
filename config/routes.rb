@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  # devise_for :users
   devise_for :users, defaults: { format: :html }
+
   namespace :api do
     devise_for :users, defaults: { format: :json },
                       class_name: 'User',

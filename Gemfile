@@ -22,7 +22,7 @@ gem "importmap-rails"
 # Gems needed for api Authentication
 gem 'devise' # currently 4.9.2 version got installed
 # gem 'jsonapi-serializer'
-gem 'jwt'
+# gem 'jwt'
 gem 'devise-jwt'
 gem 'rack-cors'
 
@@ -56,6 +56,9 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# To get latitude longitude
+gem 'geocoder'
 
 # Gems needed for rspec test suite
 gem 'rspec'
